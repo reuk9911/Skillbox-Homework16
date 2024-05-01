@@ -1,0 +1,135 @@
+﻿<Window x:Class="Homework16.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Homework16"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1200" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
+
+        </Grid.ColumnDefinitions>
+
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*"/>
+            <RowDefinition Height="5*" MinHeight="15"/>
+        </Grid.RowDefinitions>
+        <StatusBar Grid.Row="1" 
+                   Margin="0,0,0,0"
+                   Grid.ColumnSpan="3"
+                   >
+            <StatusBarItem>
+                <TextBlock Text="SQLConnection status:"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock 
+                    x:Name="TextBlockSQLConState"
+                    Text="{Binding Path=SQLConState}"/>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="AccessConnection status:"/>
+            </StatusBarItem>
+            
+            <StatusBarItem>
+                <TextBlock 
+                x:Name="TextBlockAccessConState"
+                Text="{Binding Path=AccessConState}"/>
+
+            </StatusBarItem>
+        </StatusBar>
+        <!--sqlGridView-->
+        <DataGrid x:Name="sqlGridView"
+          ItemsSource="{Binding}"   
+          IsSynchronizedWithCurrentItem="True"
+          SelectionMode="Single" 
+          AutoGenerateColumns="False" 
+          
+          IsReadOnly="False" 
+          Grid.Column="0" CurrentCellChanged="sqlGridView_CurrentCellChanged" SelectionChanged="sqlGridView_SelectionChanged" CanUserAddRows="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idSql" 
+                            Binding="{Binding id}" 
+                            Header="Id" 
+                            IsReadOnly="True"/>
+
+                <DataGridTextColumn x:Name="firstNameSql" 
+                            Binding="{Binding firstName}" 
+                            Header="Имя"/>
+
+                <DataGridTextColumn x:Name="lastNameSql" 
+                            Binding="{Binding lastName}" 
+                            Header="Фамилия"/>
+
+                <DataGridTextColumn x:Name="middleNameSql" 
+                            Binding="{Binding middleName}" 
+                            Header="Отчество"/>
+
+                <DataGridTextColumn x:Name="phoneSql" 
+            Binding="{Binding phone}" 
+            Header="Телефон"/>
+
+                <DataGridTextColumn x:Name="emailSql" 
+            Binding="{Binding email}" 
+            Header="email"/>
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <!--///// sqlGridView /////-->
+
+        
+        <!--accessGridView-->
+        <DataGrid x:Name="accessGridView"
+            ItemsSource="{Binding}"   
+            IsSynchronizedWithCurrentItem="True"
+            SelectionMode="Single" 
+            AutoGenerateColumns="False" 
+            IsReadOnly="False" 
+            Grid.Column="1" CanUserAddRows="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idAccess" 
+                    Binding="{Binding id}" 
+                    Header="Id" 
+                    IsReadOnly="True"/>
+
+                <DataGridTextColumn x:Name="emailAccess" 
+                    Binding="{Binding email}" 
+                    Header="email"/>
+
+                <DataGridTextColumn x:Name="productCodeAccess" 
+                    Binding="{Binding productCode}" 
+                    Header="Код товара"/>
+
+                <DataGridTextColumn x:Name="productNameAccess" 
+                    Binding="{Binding productName}" 
+                    Header="Наименование товара"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--////// accessGridView //////-->
+        <StackPanel Grid.Column="2" Margin="0,30,0,0">
+            <Button Margin="5" x:Name="AddClientButton" Click="AddClientButton_Click">
+                Добавить Клиента
+            </Button>
+            <Button Margin="5" x:Name="AddPurchaseButton" Click="AddPurchaseButton_Click">
+                Добавить Покупку
+            </Button>
+            <Button Margin="5" x:Name="ClearTablesButton" Click="ClearTablesButton_Click">
+                Очистить таблицы
+            </Button>
+            <Button Margin="5" x:Name="ShowAllButton" Click="ShowAllButton_Click">
+                Показать все
+            </Button>
+        </StackPanel>
+
+    </Grid>
+</Window>

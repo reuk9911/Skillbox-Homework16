@@ -1,0 +1,8 @@
+﻿CREATE LOGIN login0 
+WITH PASSWORD = '123';
+
+CREATE USER user0 
+FOR LOGIN login0;
+
+ALTER SERVER ROLE sysadmin ADD MEMBER user0;  
+GO 
